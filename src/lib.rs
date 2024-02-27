@@ -17,13 +17,12 @@ pub struct Tileset {
 
 #[derive(Serialize, Deserialize)]
 pub struct Tile {
-    pub tileset: usize,
+    pub tileset: String,
     pub tile_index: usize
 }
 
 #[derive(Default, Serialize, Deserialize)]
 pub struct Tilemap {
-    pub tilesets: Vec<Tileset>,
     pub tiles: Vec<Vec<Tile>>
 }
 
@@ -70,6 +69,15 @@ impl Tileset {
                 .into_inner()
                 .unwrap(),
             tile_size
+        }
+    }
+}
+
+impl Default for Tile {
+    fn default() -> Self {
+        Tile {
+            tileset: String::new(),
+            tile_index: 0
         }
     }
 }
